@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        .boundary{
+            height: 300px;
+            width: 300px;
+            border: 4px solid brown;
+            border-radius: 90%;
+            position: relative;
+            background-color: burlywood;
+        }
+        .container{
+            width: 800px;
+            margin: 0 auto;
+        }
+        .dot{
+            top: 140px;
+            left:138px;
+            position: absolute;
+            height: 23px;
+            width: 23px;
+            background-color: brown;
+            border-radius: 90%;
+            z-index: 1;
+        }
+        .hour{
+            height: 100px;
+           
+            background-color: brown;
+            border: 1px outset brown;
+            position: absolute;
+            top: 150px;
+            left: 150px;
+            transform: rotate(180deg);
+            transform-origin: 0% 0%;
+            
+            /* animation: time 60s infinite linear; */
+        }
+        .min{
+            height: 120px;
+           
+            background-color: brown;
+            border: 1px outset brown;
+            position: absolute;
+            top: 150px;
+            left: 150px;
+            transform: rotate(180deg);
+            transform-origin: 0% 0%;
+            /* animation: time 30s infinite linear; */
+        }
+        .sec{
+            height: 140px;
+           
+            background-color: brown;
+            border: 1px outset brown;
+            position: absolute;
+            top: 150px;
+            left: 150px;
+            transform: rotate(180deg);
+            transform-origin: 0% 0%;
+            /* animation: time 60s infinite linear; */
+        }
+        @keyframes time {
+        to {
+            transform: rotateZ(360deg);
+        }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="boundary">
+            <div class="dot"></div>
+            <div class="hour">
+            </div>
+            <div class="min">
+    
+            </div>
+            <div class="sec">
+    
+            </div>
+        </div>
+    </div>
+   
+    
+    <script>
+        let nowTime = new Date();
+        let nowTimeStr = nowTime.toString();
+        let hourNow = parseInt(nowTimeStr.substring(15, 18) );
+        let minNow = parseInt(nowTimeStr.substring(19, 21) );
+       
+        let hrEl = document.querySelector('.hour')
+        let minEl = document.querySelector('.min')
+        let secEl = document.querySelector('.sec')
+
+        let minDegree = minNow * 6;
+        let minTime = minDegree + 180;  
+        minEl.style.transform =  `rotate(${minTime}deg)`
+
+        let hrDegree = hourNow * 30;
+        let hrTime = hrDegree + 180
+        hrEl.style.transform = `rotate(${hrTime}deg)`
+       
+        
+        function secFunc(){
+            let nowTime = new Date();
+            let nowTimeStr = nowTime.toString();
+            let secNow = parseInt( nowTimeStr.substring(22, 25) );
+            let secDegree = secNow * 6;
+            let secTime = secDegree + 180;
+            secEl.style.transform = `rotate(${secTime}deg)`
+        }
+        setInterval( secFunc, 1000)
+
+        function minFunc(){
+            let nowTime = new Date();
+            let nowTimeStr = nowTime.toString();
+            let minNow = parseInt(nowTimeStr.substring(19, 21) );
+            console.log(minNow)
+            let minDegree = minNow * 6;
+            let minTime = minDegree + 180;  
+            minEl.style.transform =  `rotate(${minTime}deg)`
+        }
+        setInterval( minFunc, 300000)
+
+        function hrFunc(){
+            let nowTime = new Date();
+            let nowTimeStr = nowTime.toString();
+            let hourNow = parseInt(nowTimeStr.substring(15, 18) );
+            let hrDegree = hourNow * 30;
+            let hrTime = hrDegree + 180
+            hrEl.style.transform = `rotate(${hrTime}deg)`
+        }
+        setInterval( hrFunc, 3600000)
+
+    </script>
+</body>
+</html>
