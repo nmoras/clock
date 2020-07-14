@@ -6,6 +6,8 @@
     <title>Clock</title>
     <style>
         .boundary{
+            margin-top: 10%;
+            margin-left: 25%;
             height: 300px;
             width: 300px;
             border: 4px solid brown;
@@ -97,6 +99,7 @@
         let hrEl = document.querySelector('.hour')
         let minEl = document.querySelector('.min')
         let secEl = document.querySelector('.sec')
+        let secNow = parseInt( nowTimeStr.substring(22, 25) );
 
         let minDegree = minNow * 6;
         let minTime = minDegree + 180;  
@@ -105,6 +108,10 @@
         let hrDegree = hourNow * 30;
         let hrTime = hrDegree + 180
         hrEl.style.transform = `rotate(${hrTime}deg)`
+
+        let secDegree = secNow * 6;
+            let secTime = secDegree + 180;
+            secEl.style.transform = `rotate(${secTime}deg)`
        
         
         function secFunc(){
@@ -137,6 +144,7 @@
             hrEl.style.transform = `rotate(${hrTime}deg)`
         }
         setInterval( hrFunc, 3600000)
+        setInterval( hrFunc, 30000)
 
     </script>
 </body>
